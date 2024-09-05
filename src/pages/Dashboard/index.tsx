@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import AppBar from './AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { Badge, Box, Container, Divider, Grid, IconButton, List, Paper, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems } from './listItem';
+import { MainListItems, SecondaryListItems } from './listItem';
 import Drawer from './Drawer';
 import Chart from '../Chart';
 import Deposits from './Deposit';
 import Orders from './Orders'
 
-const Dashboard = () => {
+const Dashboard = memo(() => {
     const [open, setOpen] = useState(true);
     const toggleDrawer = () => {
         setOpen(!open);
@@ -19,7 +19,7 @@ const Dashboard = () => {
 
     return (
         <>
-            <Box sx={{ display: "flex" }}>
+            <Box sx={{ display: "flex" }} bgcolor={"red"}>
                 <AppBar component={"header"} position='absolute' open={open}>
                     <Toolbar
                         sx={{ paddingRight: "24px" }}>
@@ -65,9 +65,9 @@ const Dashboard = () => {
                     </Toolbar>
                     <Divider />
                     <List component="nav">
-                        {mainListItems}
+                        <MainListItems />
                         <Divider sx={{ my: 1 }} />
-                        {secondaryListItems}
+                        <SecondaryListItems />
                     </List>
                 </Drawer>
                 <Box
@@ -126,6 +126,6 @@ const Dashboard = () => {
             </Box>
         </>
     )
-}
+})
 
 export default Dashboard
